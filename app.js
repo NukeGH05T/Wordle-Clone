@@ -39,8 +39,6 @@ const getWordle = () => {
         "Watch", "Water", "While", "White", "Whole", "Woman", "World", "Youth"
     ]
 
-    console.log("items: " + wordArr.length)
-
     let i = Math.floor((Math.random() * 212)); /*Random int from 0 to 211 */
     
     wordle = wordArr[i].toUpperCase()
@@ -151,7 +149,6 @@ const delLetter = () =>{
 
 const checkRow = () =>{
     const guess = guessRows[currentRow].join('')
-    console.log(wordle, guess)
 
     if(currentTile === 5){
 
