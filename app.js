@@ -33,7 +33,7 @@ const keys = [
     'B',
     'N',
     'M',
-    '<<',
+    'DEL',
 ]
 
 const guessRows = [
@@ -73,7 +73,7 @@ keys.forEach(key => {
 
 const handleClick = (letter) =>{
     console.log('clicked', letter)
-    if(letter === '<<'){
+    if(letter === 'DEL'){
         delLetter()
         return
     }
