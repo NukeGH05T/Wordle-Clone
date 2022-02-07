@@ -85,7 +85,6 @@ keys.forEach(key => {
 
 const handleClick = (letter) =>{
     if(!isGameOver){
-        console.log('clicked', letter)
         if(letter === 'DEL'){
             delLetter()
             return
@@ -105,7 +104,6 @@ const addLetter = (letter) =>{
         guessRows[currentRow][currentTile] = letter
         tile.setAttribute('data', letter)
         currentTile++
-        console.log('gr-' , guessRows)
     }
 }
 
@@ -121,11 +119,9 @@ const delLetter = () =>{
 
 const checkRow = () =>{
     const guess = guessRows[currentRow].join('')
-    console.log('guess', guess)
 
     if(currentTile === 5){
 
-        console.log('Guess - ' + guess + ' Wordle - ' + wordle)
         flipColor()
 
         if(wordle == guess){
