@@ -2,8 +2,20 @@ const tileDisplay = document.querySelector('.tile-container')
 const keyboard = document.querySelector('.key-container')
 const msgDisplay = document.querySelector('.msg-container')
 
-const wordle = 'SUPER'
+let wordle
 let isGameOver = false
+
+const getWordle = () => {
+    fetch('http://localhost:8000/word')
+        .then(response => response.json())
+        .then(json => {
+            console.log(json)
+            wordle = json.toUpperCase()
+        })
+        .catch(err => console.log(err))
+}
+
+getWordle()
 
 const keys = [
     'Q',
@@ -107,10 +119,13 @@ const delLetter = () =>{
 
 const checkRow = () =>{
     const guess = guessRows[currentRow].join('')
-    flipColor()
+    console.log('guess', guess)
 
     if(currentTile === 5){
+
         console.log('Guess - ' + guess + ' Wordle - ' + wordle)
+        flipColor()
+
         if(wordle == guess){
             showMessage('Awesome!')
             isGameOver = true
@@ -141,24 +156,39 @@ const showAlert = (msg) => {
 }
 
 const addColorToKey = (keyLetter, color) => {
-    document.getElementById(keyLetter)
+    const key = document.getElementById(keyLetter)
+    key.classList.add(color)
 }
 
 const flipColor = () => {
     const rowTiles = document.querySelector('#guessRow-' + currentRow).childNodes
+    let checkWordle = wordle
+    guess = []
     rowTiles.forEach((tile, index) => {
         const dataLetter = tile.getAttribute('data')
 
+        rowTiles.forEach(tile => {
+            guess.push({letter: tile.getAttribute('data'), color: 'grey-overlay'})
+        })
+
+        guess.forEach((guess, index) => {
+            if(guess.letter == wordle[index]){
+                guess.color = 'green-overlay'
+                checkWordle = checkWordle.replace(guess.letter, '')
+            }
+        })
+
+        guess.forEach(guess => {
+            if(checkWordle.includes(guess.letter)){
+                guess.color = 'yellow-overlay'
+                checkWordle = checkWordle.replace(guess.letter, '')
+            }
+        })
+
         setTimeout(() => {
             tile.classList.add('flip')
-            if(dataLetter == wordle[index]){
-                tile.classList.add('green-overlay')
-                addColorToKey(dataLetter, 'green-overlay')
-            } else if(wordle.includes(dataLetter)){
-                tile.classList.add('yellow-overlay')
-            } else {
-                tile.classList.add('grey-overlay')
-            }
+            tile.classList.add(guess[index].color)
+            addColorToKey(guess[index].letter, guess[index].color)
         }, 500 * index)
 
         
