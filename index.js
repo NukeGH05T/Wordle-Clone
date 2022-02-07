@@ -1,11 +1,11 @@
 const axios = require("axios").default
-const PORT = 8000
+const PORT = 3000
 const express = require("express")
 const cors = require("cors")
 require('dotenv').config()
 const app = express()
 
-app.listen(() => console.log("Server running on PORT: " + 443))
+app.listen(PORT, () => console.log("Server running on PORT: " + PORT))
 
 app.use(cors())
 
