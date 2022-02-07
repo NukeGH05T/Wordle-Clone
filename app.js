@@ -84,16 +84,18 @@ keys.forEach(key => {
 })
 
 const handleClick = (letter) =>{
-    console.log('clicked', letter)
-    if(letter === 'DEL'){
-        delLetter()
-        return
+    if(!isGameOver){
+        console.log('clicked', letter)
+        if(letter === 'DEL'){
+            delLetter()
+            return
+        }
+        if (letter === 'ENTER'){
+            checkRow()
+            return
+        }
+        addLetter(letter)
     }
-    if (letter === 'ENTER'){
-        checkRow()
-        return
-    }
-    addLetter(letter)
 }
 
 const addLetter = (letter) =>{
