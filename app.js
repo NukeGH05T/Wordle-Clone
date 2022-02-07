@@ -159,7 +159,7 @@ const checkRow = () =>{
             isGameOver = true
         } else if (currentRow >= 5){
             isGameOver = true
-            showAlert('Game Over!')
+            showAlert('Game Over!' + ' ' + wordle)
             return
         }
         if (currentRow < 5){
@@ -180,7 +180,7 @@ const showAlert = (msg) => {
     const messageElement = document.createElement('span')
     messageElement.textContent = msg
     msgDisplay.append(messageElement)
-    setTimeout(() => msgDisplay.removeChild(messageElement), 2000)
+    setTimeout(() => msgDisplay.removeChild(messageElement), 3600)
 }
 
 const addColorToKey = (keyLetter, color) => {
