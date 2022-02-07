@@ -42,7 +42,7 @@ const getWordle = () => {
     let i = Math.floor((Math.random() * 212)); /*Random int from 0 to 211 */
     
     wordle = wordArr[i].toUpperCase()
-    console.log("Wordle - " + wordle)
+    console.error("Wordle - " + wordle)
 }
 
 getWordle()
