@@ -159,7 +159,7 @@ const checkRow = () =>{
             isGameOver = true
         } else if (currentRow >= 5){
             isGameOver = true
-            showAlert('Game Over!' + ' ' + wordle)
+            showAlert('Correct word:' + ' ' + wordle)
             return
         }
         if (currentRow < 5){
